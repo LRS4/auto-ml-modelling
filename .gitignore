@@ -1,1 +1,6 @@
 /.vscode
+/__pycache__
+/.pytest_cache
+
+tpot_titanic_pipeline.py 
+model_prototype.py 
