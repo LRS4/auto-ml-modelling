@@ -13,6 +13,7 @@ tpot = "*"
 scipy = "*"
 joblib = "*"
 xgboost = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.7"
