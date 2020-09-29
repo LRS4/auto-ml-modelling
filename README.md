@@ -22,6 +22,19 @@ To install all package dependencies from the piplock file use:
 pipenv install
 ```
 
+# Example usage
+To split the main dataset into train/test sets use:
+```
+python run.py split
+```
+This creates a training set X_train (features) and y_train (target), alongside a test set X_test (live features) and y_test (live target answers) which should serve as unseen 'in the wild' data values. 
+
+# Tests
+To run all unit tests use (with optional -s for print output and -v for verbose):
+```
+pytest -s -v
+```
+
 # References
 
 * [Maintainable code in Data Science](https://github.com/klemag/pydataLDN_2019-maintainable-code-for-data-science)
