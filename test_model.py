@@ -7,6 +7,7 @@ from transformers import TrainTestSplitter, EmbarkedAdjuster
 from config import (X_TRAIN, Y_TRAIN, DATA_DIR,
                     DATA_FILENAME, TARGET_COLUMN_NAME, PARAMS)
 
+
 def test_build_model():
     # arrange
     X_train, y_train = load_dataset(X_TRAIN, Y_TRAIN)
@@ -14,10 +15,10 @@ def test_build_model():
     print(model)
     # act
     model.fit(X_train, y_train)
-    #model.predict(X_train)
+    # model.predict(X_train)
 
     # assert
-    
+
 
 def test_embarked_adjuster():
     # arrange
@@ -32,21 +33,6 @@ def test_embarked_adjuster():
     for column in df.columns:
         assert column in ['Embarked']
     assert type(y_train) == pd.DataFrame
-
-
-# def test_accommodation_extractor():
-#     # arrange
-#     X_train, y_train = load_dataset(X_TRAIN, Y_TRAIN)
-#     ae = AcommodationExtractor()
-
-#     # act
-#     ae.fit(X_train)
-#     df = ae.transform(X_train)
-
-#     # assert
-#     for column in df.columns:
-#         assert column in ['hasCabin', 'FamilySize', 'Title']
-#     assert type(y_train) == pd.DataFrame
 
 
 def test_train_test_splitter():
