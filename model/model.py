@@ -5,8 +5,6 @@ from sklearn.metrics import accuracy_score, classification_report
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler, LabelEncoder
 from sklearn.impute import SimpleImputer
-from transformers import ColumnsSelector
-from pipeline import exported_pipeline as classifier
 
 from config import (X_TRAIN, X_TEST, Y_TRAIN, Y_TEST, DATA_DIR,
                     DATA_FILENAME, TARGET_COLUMN_NAME, PARAMS)
@@ -22,12 +20,21 @@ def load_dataset(x_path, y_path):
 
 
 def build_model():
+    """
+    Builds the model ready for training
+    """
     pass
 
 
 def train_model():
+    """
+    Applies the built model to X_train y_train sets
+    """
     pass
 
 
-def tune_pipeline():
+def test_model():
+    """
+    Tests the trained model against X_test y_test sets
+    """
     pass

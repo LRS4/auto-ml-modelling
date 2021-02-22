@@ -5,24 +5,24 @@ from transformers import TrainTestSplitter
 
 def main():
     parser = argparse.ArgumentParser(
-        description="A command line tool to manage the project")
+        description="A command line tool to manage the model")
     parser.add_argument('stage',
                         metavar='stage',
                         type=str,
-                        choices=['tune', 'train', 'test', 'split'],
+                        choices=['split', 'train', 'test'],
                         help="Stage to run.")
 
     stage = parser.parse_args().stage
 
     if stage == 'split':
-        tts = TrainTestSplitter()
-        tts.split_dataset()
+        train_test_splitter = TrainTestSplitter()
+        train_test_splitter.split_dataset()
 
-    if stage == 'tune':
-        print("Tuning for optimal pipeline...")
+    if stage == 'train':
+        print("Training model...")
 
     elif stage == "test":
-        print("test argument hit!")
+        print("Testing model...")
 
 
 if __name__ == "__main__":
