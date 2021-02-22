@@ -7,8 +7,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import cross_val_predict
 from sklearn.metrics import confusion_matrix
-from .transformers import TestDataPreprocessor, TrainDataPreprocessor
-from .config import (X_TRAIN, X_TEST, Y_TRAIN, Y_TEST, DATA_DIR,
+from transformers import TestDataPreprocessor, TrainDataPreprocessor
+from config import (X_TRAIN, X_TEST, Y_TRAIN, Y_TEST, DATA_DIR,
                     DATA_FILENAME, TARGET_COLUMN_NAME, PARAMS)
 
 
