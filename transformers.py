@@ -14,20 +14,20 @@ class ColumnsSelector(TransformerMixin, BaseEstimator):
     def __init__(self, column_names=[]):
         self.column_names = column_names
 
-    def fit(self, df, y=None):
+    def fit(self, X, y=None):
         return self
 
-    def transform(self, df, y=None):
-        return df.loc[:, self.column_names]
+    def transform(self, X, y=None):
+        return X.loc[:, self.column_names]
 
 
 class MissingValuesImputer(TransformerMixin, BaseEstimator):
     """ Impute NaN values in given columns """
 
-    def fit(self, df, y=None):
+    def fit(self, X, y=None):
         return self
 
-    def transform(self, df, y=None):
+    def transform(self, X, y=None):
         df.fill_na(inplace=True)
 
 
@@ -37,11 +37,11 @@ class ColumnsRemover(TransformerMixin, BaseEstimator):
     def __init__(self, column_names=[]):
         self.column_names = column_names
 
-    def fit(self, df, y=None):
+    def fit(self, X, y=None):
         return self
 
-    def transform(self, df, y=None):
-        return df.drop(self.column_names, axis=1)
+    def transform(self, X, y=None):
+        return X.drop(self.column_names, axis=1)
 
 
 class TitleExtractor(TransformerMixin, BaseEstimator):
