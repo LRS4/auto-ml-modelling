@@ -12,6 +12,7 @@ class TrainTestSplitter():
     def __init__(self):
         self.X, self.y = self.load_full_dataset()
 
+
     def load_full_dataset(self):
         """ Loads the complete dataset returning X (features) and y (target) """
         dataset = pd.read_csv(os.sep.join([DATA_DIR, DATA_FILENAME]))
@@ -19,11 +20,13 @@ class TrainTestSplitter():
                             axis=1), dataset[TARGET_COLUMN_NAME]
         return X, y
 
+
     def save_splits_to_csv(self, splits: dict):
         for key in splits:
             df = splits[key]
-            df.to_csv(path_or_buf=f'{DATA_DIR}{key}.csv')
+            df.to_csv(path_or_buf=f'{DATA_DIR}{key}.csv', index=False)
         print(f'Splits saved successfully in {DATA_DIR} folder')
+
 
     def print_summary(self, splits: dict):
         print('Printing summary...')
@@ -32,11 +35,12 @@ class TrainTestSplitter():
             df = splits[key]
             print(f'{key}: {df.shape}')
 
+
     def split_dataset(self, save_splits=True, print_summary=True):
         print(f'Splitting dataset into train and test sets. Ratio is ' + 
             str(int(100 - (PARAMS['test_size'] * 100))) + 
             ' / ' + 
-            str(int(PARAMS['test_size'] * 100))) + '.'
+            str(int(PARAMS['test_size'] * 100)))
 
         X, y = self.load_full_dataset()
         X_train, X_test, y_train, y_test = train_test_split(
@@ -68,20 +72,20 @@ class TrainDataPreprocessor():
         X_train = pd.read_csv(os.sep.join([DATA_DIR, X_TRAIN]))
         y_train = pd.read_csv(os.sep.join([DATA_DIR, Y_TRAIN]))
         
-        return X_train, y_train
+        return X_train[PARAMS['features_subset']], y_train
 
 
     def get_prepared_training_data(self):
         self.impute_missing_values()
         self.map_categoric_columns_to_numeric()
 
-        return self.X_train, self.y_train
+        return self.X_train.values, self.y_train.values.ravel()
 
     
     def impute_missing_values(self):
-        self.X_train['Age'] = train['Age'].fillna(X_train['Age'].mean())
-        self.X_train['Fare'] = train['Fare'].fillna(X_train['Fare'].median())
-        self.X_train['Embarked'] = X_train['Embarked'].fillna('S')
+        self.X_train['Age'] = self.X_train['Age'].fillna(self.X_train['Age'].mean())
+        self.X_train['Fare'] = self.X_train['Fare'].fillna(self.X_train['Fare'].median())
+        self.X_train['Embarked'] = self.X_train['Embarked'].fillna('S')
 
     
     def map_categoric_columns_to_numeric(self):
@@ -100,14 +104,14 @@ class TestDataPreprocessor():
         X_test = pd.read_csv(os.sep.join([DATA_DIR, X_TEST]))
         y_test = pd.read_csv(os.sep.join([DATA_DIR, Y_TEST]))
         
-        return X_test, y_test
+        return X_test[PARAMS['features_subset']], y_test
 
 
-    def get_prepared_training_data(self):
+    def get_prepared_test_data(self):
         self.impute_missing_values()
         self.map_categoric_columns_to_numeric()
 
-        return self.X_test, self.y_test
+        return self.X_test.values, self.y_test.values.ravel()
     
 
     def impute_missing_values(self):
