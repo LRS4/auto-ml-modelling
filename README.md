@@ -20,7 +20,11 @@ and used for other projects as a starting point.
 
 ├── data                   # Data CSV files including raw data and train test splits
 ├── model                  # Model logic and entry point run.py 
-│   ├── tests              # Unit tests for model
+│   ├── config.py          # Holds volatile configuration values
+│   ├── model.py           # Model for performing prediction
+│   ├── run.py             # Entry point for the program
+│   ├── tests.py           # Unit tests
+│   ├── transformers.py    # Any preprocessing or transformation operations to the data
 ├── outputs                # Any outputted files such as model in binary format (.joblib) and predictions
 ├── utils                  # Helper files - tpot to provide automated model finding
 
@@ -90,7 +94,8 @@ that needs predictions.
 # Tests
 To run all unit tests use (with optional -s for print output and -v for verbose):
 ```
-pytest -s -v
+cd model
+pytest tests.py -s -v
 ```
 
 # References
