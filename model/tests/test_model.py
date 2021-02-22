@@ -7,9 +7,22 @@ from model.model import build_model
 
 def test_build_model():
     # arrange
-    build_model()
+    model = build_model()
 
     # act
+    print(str(model))
 
     # assert
-    assert 1 == 1
+    assert 'RandomForestClassifier' in str(model)
+    
+
+def test_train_model():
+    pass
+
+
+def test_test_model():
+    pass
+
+
+def test_predict():
+    pass
