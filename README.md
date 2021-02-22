@@ -53,6 +53,7 @@ the most optimal model for the given data.
 
 To split the main dataset into train/test sets use:
 ```
+cd model
 python run.py split
 ```
 This creates a training set X_train (features) and y_train (target), alongside a test set X_test (live features) and y_test (live target answers) which should serve as unseen 'in the wild' data values. 
@@ -60,6 +61,7 @@ This creates a training set X_train (features) and y_train (target), alongside a
 
 To train the model on the training dataset use:
 ```
+cd model
 python run.py train
 ```
 This gathers prepared data using the TrainDataPreprocessor class and trains the model. It
@@ -69,6 +71,7 @@ to binary format in `..outputs/model.joblib`
 
 To test the model on the test dataset (acts as unseen data) use:
 ```
+cd model
 python run.py test
 ```
 This gathers prepared data using the TestDataPreprocessor class and outputs prediction accuracy.
@@ -76,6 +79,7 @@ This gathers prepared data using the TestDataPreprocessor class and outputs pred
 
 To output predictions on the test dataset (acts as unseen data) use:
 ```
+cd model
 python run.py predict
 ```
 This concatenates X_test, y_test and the newly created predictions for manual sense checking
