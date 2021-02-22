@@ -1,7 +1,7 @@
 import argparse
 
-from transformers import TrainTestSplitter
-from model import train_model, test_model, predict
+from .transformers import TrainTestSplitter
+from model.model import train_model, test_model, predict
 
 
 def main():

@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from config import (DATA_DIR, DATA_FILENAME,
+from .config import (DATA_DIR, DATA_FILENAME,
                     TARGET_COLUMN_NAME, X_TRAIN, Y_TRAIN, X_TEST, Y_TEST, PARAMS, MAPPINGS)
 
 
