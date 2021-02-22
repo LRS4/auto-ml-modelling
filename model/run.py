@@ -1,6 +1,7 @@
 import argparse
 
 from transformers import TrainTestSplitter
+from model import train_model, test_model, predict
 
 
 def main():
@@ -9,7 +10,7 @@ def main():
     parser.add_argument('stage',
                         metavar='stage',
                         type=str,
-                        choices=['split', 'train', 'test'],
+                        choices=['split', 'train', 'test', 'predict'],
                         help="Stage to run.")
 
     stage = parser.parse_args().stage
@@ -19,11 +20,16 @@ def main():
         train_test_splitter.split_dataset()
 
     if stage == 'train':
-        print("Training model...")
+        print('Training model...', end="\n\n")
+        train_model()
 
-    elif stage == "test":
-        print("Testing model...")
+    if stage == 'test':
+        print('Testing model...', end="\n\n")
+        test_model()
 
+    if stage == 'predict':
+        print('Outputting predictions to ../outputs/predictions.csv', end="\n\n")
+        predict()
 
 if __name__ == "__main__":
     main()
