@@ -10,7 +10,7 @@ TARGET_COLUMN_NAME = 'Survived'
 MAPPINGS = {
     'TARGET_DECODE': {0: 'Non-survivor', 1: 'Survivor'},
     'EMBARKED_NAMES': {'S': 'Southampton','Q': 'Queenstown', 'C': 'Cherbourg'},
-    'EMBARKED': {'S': 1,'Q': 2, 'C': 3}
+    'EMBARKED': {'S': 1,'Q': 2, 'C': 3},
     'SEX': {'male': 1, 'female': 2}
 }
 
