@@ -55,6 +55,7 @@ def train_model():
     print('Actual positive    %6d' % confusion_matrix[0,0] + '             %5d' % confusion_matrix[0,1])
     print('Actual negative    %6d' % confusion_matrix[1,0] + '             %5d' % confusion_matrix[1,1])
     print('')
+    print(f'Count of incorrectly classified  { confusion_matrix[1,0] + confusion_matrix[0,1] } / { len(y_train) }')
     print(f'Accuracy  { round(sklm.accuracy_score(y_train, y_train_predictions) * 100, 2) } %')
     print(' ')
 
@@ -82,7 +83,8 @@ def predict():
     """
     Uses the model to predict on new data.
     For now this is set to y_test as this represents
-    'unseen' data.
+    'unseen' data. Outputs X_test, y_test and predictions
+    in a csv for manual sense checking
     """
     try:
         model = joblib.load('../outputs/model.joblib')
@@ -96,10 +98,20 @@ def predict():
     print('Creating predictions against X_test (unseen data)')
     predictions = model.predict(X_test)
 
-    passenger_id = pd.read_csv(os.sep.join([DATA_DIR, X_TEST]), usecols=['PassengerId'])
-    df = pd.DataFrame()
-    df['PassengerId'] = passenger_id['PassengerId']
-    df['Survived_Predictions'] = predictions
+    X_test_csv = pd.read_csv(os.sep.join([DATA_DIR, X_TEST]))
+    X_test_csv['Survived'] = y_test
+    X_test_csv['Survived_PREDICTION'] = predictions
 
-    df.to_csv('../outputs/predictions.csv', index=False)
-    print('Predictions saved to ../output/predictions.csv')
+    X_test_csv.to_csv('../outputs/predictions.csv', index=False)
+    print('Predictions saved to ../output/predictions.csv', end='\n\n')
+
+    print('Creating confusion matrix for test predictions...')
+    confusion_matrix = sklm.confusion_matrix(y_test, predictions)
+    print('                 Confusion matrix')
+    print('                 Score positive    Score negative')
+    print('Actual positive    %6d' % confusion_matrix[0,0] + '             %5d' % confusion_matrix[0,1])
+    print('Actual negative    %6d' % confusion_matrix[1,0] + '             %5d' % confusion_matrix[1,1])
+    print('')
+    print(f'Count of incorrectly classified  { confusion_matrix[1,0] + confusion_matrix[0,1] } / { len(y_test) }')
+    print(f'Accuracy  { round(sklm.accuracy_score(y_test, predictions) * 100, 2) } %')
+    print(' ')
